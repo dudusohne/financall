@@ -7,12 +7,14 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.8"
+    "nuxt": "3.0.0-rc.8",
+    "sass-loader": "10"
   },
   "dependencies": {
     "@nuxtjs/google-fonts": "^3.0.0-0",
     "@pinia/nuxt": "^0.4.1",
-    "sass": "^1.54.4",
+    "env": "^0.0.2",
+    "sass": "^1.54.5",
     "vitest": "^0.22.1"
   }
 }

@@ -1,28 +1,48 @@
 <template>
     <main>
-        <fin-header />
         <div class="container">
-            <input />
+            <img src="../assets/images/fncall-logo.png" />
+            <logo />
+            <button class="auth-button" @click="$router.push('/home')">ENTRAR</button>
         </div>
     </main>
 </template>
 
 <script setup lang="ts"></script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+body {
+    margin: 0;
+}
+
 main {
-    height: 97vh;
-    width: 100%;
+    margin: 0;
+    height: 100vh;
 
     .container {
+        display: flex;
+        flex-direction: column;
         height: calc(100% - 50px);
+        align-items: center;
+        justify-content: center;
 
         @media only screen and (max-device-width: 480px) {
             height: calc(100% - 50px);
         }
 
-        input {
-            width: 100%;
+        img {
+            height: 15rem;
+            margin-left: 3rem;
+        }
+
+        .auth-button {
+            min-width: 6rem;
+            height: 2.4rem;
+            background-color: rgb(26, 25, 25);
+            color: white;
+
+            border: 1px solid #333;
+            border-radius: 8px;
         }
     }
 }

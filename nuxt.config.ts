@@ -1,16 +1,20 @@
 import { defineNuxtConfig } from "nuxt";
-import GoogleFontsModule from '@nuxtjs/google-fonts'
+import GoogleFontsModule from "@nuxtjs/google-fonts";
 
-// https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   buildModules: ["@nuxtjs/google-fonts", "@pinia/nuxt"],
-  modules: [
-    GoogleFontsModule
-  ],
+  modules: [GoogleFontsModule],
   googleFonts: {
     families: {
       Roboto: true,
-      Mulish: true
-    }
+      Mulish: true,
+    },
+  },
+  head: {
+    title: "financAll",
+    meta: [{ charset: "utf-8" }],
+  },
+  env: {
+    baseURL: process.env.BASE_URL
   }
 });

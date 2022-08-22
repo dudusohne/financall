@@ -1,6 +1,9 @@
 <template>
     <div class="fin-header">
-        <span>financALL</span>
+        <div class="logo">
+            <span>financ</span>
+            <p>ALL</p>
+        </div>
         <img src="" />
     </div>
 </template>
@@ -18,16 +21,32 @@
     align-items: center;
     justify-content: space-between;
 
-    padding-inline: 15px;
+    background-color:
+        #1a1919;
 
-    background-color: rgb(104, 187, 104);
+    .logo {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
 
-    span {
-        font-size: 22px;
-        font-family: "Roboto";
-        font-weight: medium;
+        margin-left: 1rem;
 
-        letter-spacing: 1.2px;
+        span {
+            font-size: 27px;
+            font-family: "Roboto";
+            font-weight: medium;
+            letter-spacing: 1.2px;
+            color: #ffffff;
+        }
+
+        p {
+            font-size: 32px;
+            font-family: "Roboto";
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #50a261;
+        }
     }
 
     img {
@@ -35,6 +54,8 @@
         height: 45px;
         border-radius: 50%;
         background-color: rgb(85, 85, 85);
+
+        margin-right: 3%;
     }
 }
 </style>
