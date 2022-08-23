@@ -9,6 +9,8 @@ const icons = [
   "Account",
   "CloseCircleOutline",
   "CheckCircleOutline",
+  "Magnify",
+  "Logout"
 ];
 
 export default function () {

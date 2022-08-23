@@ -1,1 +1,1 @@
-export const useAuthUser = () => useState('authUser', () => null)
+export const useAuthUser: any = () => useState('authUser', () => null)

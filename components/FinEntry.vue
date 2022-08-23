@@ -42,6 +42,10 @@ const props = withDefaults(defineProps<EntryProps>(), {
     max-height: 3.3rem;
     width: 90%;
 
+    padding-left: 1rem;
+
+    box-shadow: 1px 1px rgb(175, 175, 175);
+
     justify-content: space-between;
     align-items: center;
 
@@ -125,6 +129,8 @@ const props = withDefaults(defineProps<EntryProps>(), {
         background-color: #e4e4e4;
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
+
+        box-shadow: 1px 1px rgb(175, 175, 175);
 
         button {
             border: none;

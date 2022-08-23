@@ -4,23 +4,40 @@
             <span>financ</span>
             <p>ALL</p>
         </div>
-        <img :src="user?.photoURL" alt="user" />
+        <div class="user">
+            <img :src="user?.photoURL" alt="user" />
+            <MaterialIconLogout class="icon" @click="userLogOut" />
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useAuthUser } from '~~/composables/useAuthUser'
+import { logOut } from '~~/composables/useAuth'
+import { useRouter } from 'vue-router'
 
-const user: any = useAuthUser()
-console.log(user.value)
+const user: Record<string, string> = useAuthUser()
+const router = useRouter()
+
+async function userLogOut() {
+    try {
+        logOut()
+    } catch (e) {
+        console.log(e)
+    } finally {
+        router.push('/')
+    }
+}
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .fin-header {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 50px;
+    position: sticky;
+    top: 0;
+    height: 7vh;
 
     align-items: center;
     justify-content: space-between;
@@ -53,13 +70,24 @@ console.log(user.value)
         }
     }
 
-    img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        background-color: rgb(85, 85, 85);
+    .user {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 
-        margin-right: 3%;
+        margin-right: 1%;
+
+        .icon {
+            color: rgb(226, 226, 226);
+        }
+
+        img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: rgb(85, 85, 85);
+        }
     }
+
 }
 </style>

@@ -16,7 +16,7 @@
 .tabs {
     display: flex;
     flex-direction: row;
-    height: 3rem;
+    height: 2.2rem;
     padding-left: 3rem;
 
     .item {
