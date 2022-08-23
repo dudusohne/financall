@@ -1,5 +1,5 @@
 <template>
-    <div class="fin-entry">
+    <div class="fin-entry-dark">
         <div class="left-items">
             <span class="name">{{ props.name }}</span>
             <span class="desc">{{ props.desc }}</span>
@@ -35,7 +35,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
 </script>
 
 <style lang="scss" scoped>
-.fin-entry {
+.fin-entry-dark {
     display: flex;
     flex-direction: row;
     min-height: 3.2rem;
@@ -44,32 +44,15 @@ const props = withDefaults(defineProps<EntryProps>(), {
 
     padding-left: 1rem;
 
-    box-shadow: 1px 1px rgb(175, 175, 175);
-
     justify-content: space-between;
     align-items: center;
 
     border-radius: 12px;
+    border: 1px solid rgb(184, 184, 184);
 
-    background-image:
-        linear-gradient(205deg,
-            rgb(161, 238, 171) 0%,
-            rgb(170, 231, 178) 8.1%,
-            rgb(203, 248, 209) 15.5%,
-            rgb(175, 240, 184) 22.5%,
-            rgb(174, 243, 185) 29%,
-            rgb(159, 233, 171) 35.3%,
-            rgb(164, 236, 176) 41.2%,
-            rgb(180, 240, 191) 47.1%,
-            rgb(179, 236, 191) 52.9%,
-            rgb(173, 240, 188) 58.8%,
-            rgb(161, 230, 177) 64.7%,
-            rgb(154, 228, 173) 71%,
-            rgb(151, 228, 172) 77.5%,
-            rgb(164, 226, 181) 84.5%,
-            rgb(185, 241, 200) 91.9%,
-            rgb(210, 250, 221) 100%);
-
+    /* background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); */
+    /* background-image: linear-gradient( 109.6deg, rgba(156,252,248,1) 11.2%, rgba(110,123,251,1) 91.1% ); */
+    background-image: linear-gradient(95.2deg, rgb(237, 252, 173) 26.8%, rgb(234, 246, 192) 64%);
     margin-top: 10px;
 
     .left-items {
@@ -79,14 +62,17 @@ const props = withDefaults(defineProps<EntryProps>(), {
         justify-content: space-between;
         padding: 5px;
 
+
+
         @media only screen and (max-device-width: 480px) {
             max-width: 8rem;
         }
 
         .name {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             font-family: "Roboto";
+            letter-spacing: 2px;
             color: #1a1919;
         }
 
@@ -105,7 +91,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
         padding: 5px;
 
         .value {
-            font-size: 1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             font-family: "Roboto";
             color: #1a1919;
@@ -121,23 +107,25 @@ const props = withDefaults(defineProps<EntryProps>(), {
 
     .buttons {
         display: flex;
-        flex-direction: column;
-        /* justify-content: space-between;
-        padding: 10px;
-        height: 2.3rem; */
+        flex-direction: row;
 
-        background-color: #e4e4e4;
+        /* background-color: #161616; */
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
 
-        box-shadow: 1px 1px rgb(175, 175, 175);
+        /* box-shadow: 1px 1px rgb(175, 175, 175); */
 
         button {
-            border: none;
-            background: none;
+            height: 5vh;
+            background-color: #eeeeee;
+            margin-right: 4px;
+
+            border-radius: 8px;
+            border: 1px solid #333;
 
             :hover {
-                transform: scale(1.03)
+                transform: scale(1.03);
+                cursor: pointer;
             }
 
             .icon {
@@ -149,5 +137,13 @@ const props = withDefaults(defineProps<EntryProps>(), {
             }
         }
     }
+}
+
+div.fin-entry-dark:hover {
+    /* background: linear-gradient(to right, #c6ffcd, #fbfcb5, #79f77f); */
+    background-image: linear-gradient(25deg,#4cd68a,#47ee6b 50%);
+    cursor: pointer;
+    transition: 0.3s ease;
+    border-color: rgb(241, 241, 241);
 }
 </style>

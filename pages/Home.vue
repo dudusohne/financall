@@ -8,28 +8,22 @@
                 <MaterialIconMagnify class="icon" />
             </div>
             <div class="list">
-                <fin-entry name="ALUGUEL --AASD" date="10/05" value="305,00" />
-                <fin-entry name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry name="AGUA" date="10/05" value="305,00" />
-                <fin-entry name="CARTÃO 1" date="10/05" value="305,00" />
-                <fin-entry name="ALUGUEL --AASD" date="10/05" value="305,00" />
-                <fin-entry name="LUZ" date="10/05" value="305,00" />
-                <fin-entry name="AGUA" date="10/05" value="305,00" />
-                <fin-entry name="CARTÃO 1" date="10/05" value="305,00" />
-                <fin-entry name="ALUGUEL --AASD" date="10/05" value="305,00" />
-                <fin-entry name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry name="AGUA" date="10/05" value="305,00" />
-                <fin-entry name="CARTÃO 1" date="10/05" value="305,00" />
-                <fin-entry name="ALUGUEL --AASD" date="10/05" value="305,00" />
-                <fin-entry name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry name="AGUA" date="10/05" value="305,00" />
-                <fin-entry name="CARTÃO 1" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
             </div>
         </div>
     </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <style lang="scss" scoped>
 .home {

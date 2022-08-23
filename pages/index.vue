@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import { logIn } from '~~/composables/useAuth'
-import { useRouter } from "vue-router";
+import { useRouter } from 'vue-router'
 
 const isLoading = ref()
 const router = useRouter()

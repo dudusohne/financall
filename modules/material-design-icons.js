@@ -10,7 +10,10 @@ const icons = [
   "CloseCircleOutline",
   "CheckCircleOutline",
   "Magnify",
-  "Logout"
+  "Logout",
+  "ViewDashboard",
+  "WalletPlusOutline",
+  "HomeVariant"
 ];
 
 export default function () {

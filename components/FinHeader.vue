@@ -45,11 +45,14 @@ async function userLogOut() {
     background-color:
         #1a1919;
 
+    z-index: 10;
+
     .logo {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        max-height: 10px;
 
         margin-left: 1rem;
 
