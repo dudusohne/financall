@@ -7,14 +7,18 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
+    "@nuxtjs/pwa": "^3.3.5",
     "nuxt": "3.0.0-rc.8",
     "sass-loader": "10"
   },
   "dependencies": {
+    "@nuxtjs/firebase": "^8.2.2",
     "@nuxtjs/google-fonts": "^3.0.0-0",
     "@pinia/nuxt": "^0.4.1",
     "env": "^0.0.2",
+    "firebase": "^9.9.3",
     "sass": "^1.54.5",
-    "vitest": "^0.22.1"
+    "vitest": "^0.22.1",
+    "vue-material-design-icons": "^5.1.2"
   }
 }

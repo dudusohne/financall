@@ -1,6 +1,7 @@
 <template>
     <div class="home">
         <fin-header />
+        <tabs />
         <div class="container">
             <input />
             <div class="list">
@@ -37,7 +38,7 @@
         }
 
         input {
-            width: 80%;
+            width: 90%;
             height: 2rem;
             max-width: 560px;
 
@@ -55,6 +56,8 @@
         .list {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            align-items: center;
 
             margin-top: 5px;
         }

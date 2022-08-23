@@ -4,11 +4,15 @@
             <span>financ</span>
             <p>ALL</p>
         </div>
-        <img src="" />
+        <img :src="user?.photoURL" alt="user" />
     </div>
 </template>
 
 <script setup lang="ts">
+import { useAuthUser } from '~~/composables/useAuthUser'
+
+const user: any = useAuthUser()
+console.log(user.value)
 </script>
 
 <style lang="scss">

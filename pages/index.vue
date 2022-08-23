@@ -3,12 +3,28 @@
         <div class="container">
             <img src="../assets/images/fncall-logo.png" />
             <logo />
-            <button class="auth-button" @click="$router.push('/home')">ENTRAR</button>
+            <button class="auth-button" @click="authIn" :loading="isLoading">ENTRAR</button>
         </div>
     </main>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { logIn } from '~~/composables/useAuth'
+import { useRouter } from "vue-router";
+
+const isLoading = ref()
+const router = useRouter()
+
+async function authIn() {
+    try {
+        await logIn()
+    } catch (e) {
+        console.log(e)
+    } finally {
+        router.push('/home')
+    }
+}
+</script>
 
 <style lang="scss">
 body {
