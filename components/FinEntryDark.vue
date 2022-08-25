@@ -50,8 +50,6 @@ const props = withDefaults(defineProps<EntryProps>(), {
     border-radius: 12px;
     border: 1px solid rgb(184, 184, 184);
 
-    /* background: linear-gradient(to right, #c6ffdd, #fbd786, #f7797d); */
-    /* background-image: linear-gradient( 109.6deg, rgba(156,252,248,1) 11.2%, rgba(110,123,251,1) 91.1% ); */
     background-image: linear-gradient(95.2deg, rgb(237, 252, 173) 26.8%, rgb(234, 246, 192) 64%);
     margin-top: 10px;
 
@@ -109,11 +107,13 @@ const props = withDefaults(defineProps<EntryProps>(), {
         display: flex;
         flex-direction: row;
 
-        /* background-color: #161616; */
         border-top-right-radius: 12px;
         border-bottom-right-radius: 12px;
 
-        /* box-shadow: 1px 1px rgb(175, 175, 175); */
+        :hover {
+            transform: scale(1.03);
+            cursor: pointer;
+        }
 
         button {
             height: 5vh;
@@ -122,11 +122,6 @@ const props = withDefaults(defineProps<EntryProps>(), {
 
             border-radius: 8px;
             border: 1px solid #333;
-
-            :hover {
-                transform: scale(1.03);
-                cursor: pointer;
-            }
 
             .icon {
                 color: red;
@@ -140,8 +135,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
 }
 
 div.fin-entry-dark:hover {
-    /* background: linear-gradient(to right, #c6ffcd, #fbfcb5, #79f77f); */
-    background-image: linear-gradient(25deg,#4cd68a,#47ee6b 50%);
+    background-image: linear-gradient(25deg, #4cd68a, #47ee6b 50%);
     cursor: pointer;
     transition: 0.3s ease;
     border-color: rgb(241, 241, 241);

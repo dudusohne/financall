@@ -18,7 +18,9 @@
     "env": "^0.0.2",
     "firebase": "^9.9.3",
     "sass": "^1.54.5",
+    "uuid": "^8.3.2",
     "vitest": "^0.22.1",
-    "vue-material-design-icons": "^5.1.2"
+    "vue-material-design-icons": "^5.1.2",
+    "vue3-datepicker": "^0.3.4"
   }
 }

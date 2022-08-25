@@ -1,26 +1,28 @@
 <template>
     <div class="tabs">
         <div style="display: flex; flex-direction: row;">
-            <div class="item item-add">
-                <MaterialIconPlusCircleOutline class="icon" />
-            </div>
+            <NuxtLink to="/register">
+                <div class="item item-add" :class="actualRoute === '/register' ? 'is-active' : ''">
+                    <MaterialIconPlusCircleOutline class="icon" />
+                </div>
+            </NuxtLink>
             <NuxtLink to="/home">
-                <div class="item item-home" v-show="actualRoute !== '/home'">
+                <div class="item item-home" :class="actualRoute === '/home' ? 'is-active' : ''">
                     <MaterialIconHomeVariant class="icon" />
                 </div>
             </NuxtLink>
             <NuxtLink to="/profile">
-                <div class="item item-profile" v-show="actualRoute !== '/profile'">
+                <div class="item item-profile" :class="actualRoute === '/profile' ? 'is-active' : ''">
                     <MaterialIconAccount class="icon" />
                 </div>
             </NuxtLink>
             <NuxtLink to="/wallet">
-                <div class="item item-wallet" v-show="actualRoute !== '/wallet'">
+                <div class="item item-wallet" :class="actualRoute === '/wallet' ? 'is-active' : ''">
                     <MaterialIconWalletPlusOutline class="icon" />
                 </div>
             </NuxtLink>
             <NuxtLink to="/dashboard">
-                <div class="item item-dashboard" v-show="actualRoute !== '/dashboard'">
+                <div class="item item-dashboard" :class="actualRoute === '/dashboard' ? 'is-active' : ''">
                     <MaterialIconViewDashboard class="icon" />
                 </div>
             </NuxtLink>
@@ -99,13 +101,18 @@ const style = computed<StyleValue>(() => ({
         }
     }
 
+    div.item.is-active {
+        background-color: #1a1919;
+        transform: translateY(5px);
+
+        .icon {
+            color: white;
+        }
+    }
+
     div.item:hover {
         transform: translateY(5px);
         cursor: pointer;
-
-        .icon {
-            color: black;
-        }
     }
 
     .item-home {
