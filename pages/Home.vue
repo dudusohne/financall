@@ -8,21 +8,46 @@
                 <MaterialIconMagnify class="icon" />
             </div>
             <div class="list">
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
-                <fin-entry-dark name="LUZ" desc="description" date="10/05" value="305,00" />
+                <fin-entry-dark v-for="bill in bills" :name="bill.name" :desc="bill.description" :date="bill.date"
+                    :value="bill.value" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDatabase, ref as Ref, set, onValue } from "firebase/database";
+import { useRouter } from "vue-router";
 
+const auth = getAuth();
+
+const router = useRouter()
+
+const db = getDatabase();
+
+const bills = ref()
+
+onBeforeMount(() => {
+    onAuthStateChanged(auth, (user) => {
+        if (!user) {
+            router.push('/')
+        }
+        handleGetBills()
+    })
+})
+
+async function handleGetBills() {
+    try {
+        const starCountRef = Ref(db, `users/${auth.currentUser.uid}/bills`);
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+            bills.value = data
+        });
+    } catch (e) {
+        console.log(e)
+    }
+}
 </script>
 
 <style lang="scss" scoped>

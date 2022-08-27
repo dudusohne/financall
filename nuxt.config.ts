@@ -50,4 +50,9 @@ export default defineNuxtConfig({
       href: "https://fonts.googleapis.com/icon?family=Material+Icons",
     },
   ],
+  nitro: {
+    externals: {
+      inline: ["uuid"],
+    },
+  }
 });
