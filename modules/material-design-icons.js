@@ -13,7 +13,9 @@ const icons = [
   "Logout",
   "ViewDashboard",
   "WalletPlusOutline",
-  "HomeVariant"
+  "HomeVariant",
+  "ContentSavePlusOutline",
+  "Broom"
 ];
 
 export default function () {

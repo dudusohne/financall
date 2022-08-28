@@ -1,5 +1,5 @@
 <template>
-    <div class="tabs">
+    <div class="fin-tabs">
         <div style="display: flex; flex-direction: row;">
             <NuxtLink to="/register">
                 <div class="item item-add" :class="actualRoute === '/register' ? 'is-active' : ''">
@@ -64,7 +64,7 @@ const style = computed<StyleValue>(() => ({
 </script>
 
 <style lang="scss" scoped>
-.tabs {
+.fin-tabs {
     display: flex;
     flex-direction: row;
     height: 2.2rem;

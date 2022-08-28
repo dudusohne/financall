@@ -1,7 +1,7 @@
 <template>
     <div class="register">
         <fin-header />
-        <tabs />
+        <fin-tabs />
         <div class="container" as="form">
             <span class="container-title">REGISTER A NEW BILL</span>
 
@@ -23,8 +23,13 @@
             </div>
 
             <div style="display: flex; flex-direction: row; margin-top: 2rem;">
-                <button class="button-clear" @click="resetForm">LIMPAR</button>
-                <button class="button-send" type="submit" @click="handleRegisterBill()">REGISTRAR</button>
+                <button class="button-clear" @click="resetForm">
+                    <MaterialIconBroom class="icon" />
+                </button>
+                <button class="button-send" type="submit" @click="handleRegisterBill()">
+                    SAVE
+                    <MaterialIconContentSavePlusOutline class="icon" style="margin-left: 5px" />
+                </button>
             </div>
         </div>
     </div>
@@ -148,6 +153,10 @@ function resetForm() {
         }
 
         .button-send {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
             background-color: rgb(151, 211, 102);
 
             margin-left: 0.4rem;

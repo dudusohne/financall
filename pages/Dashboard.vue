@@ -1,7 +1,7 @@
 <template>
     <div class="dashboard">
         <fin-header />
-        <tabs />
+        <fin-tabs />
         <div class="container">
             <span></span>
         </div>

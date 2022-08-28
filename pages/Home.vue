@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <fin-header />
-        <tabs />
+        <fin-tabs />
         <div class="container">
             <div class="input-wrapper">
                 <input />
@@ -9,7 +9,7 @@
             </div>
             <div class="list">
                 <fin-entry-dark :key="bill.id" v-for="bill in bills" :name="bill.name" :desc="bill.description" :date="bill.date"
-                    :value="bill.value" :payd="bill.payd" @remove="handleRemoveItem()" @check="handleCheckItem(bill)" />
+                    :value="bill.value" :payd="bill.payd" @remove="handleRemoveItem(bill)" @check="handleCheckItem(bill)" />
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref as Ref, set, onValue, update } from "firebase/database";
+import { getDatabase, ref as Ref, remove, onValue, update } from "firebase/database";
 import { useRouter } from "vue-router";
 
 const auth = getAuth();
@@ -49,12 +49,15 @@ async function handleGetBills() {
     }
 }
 
-function handleRemoveItem() {
-    console.log('remove item')
+async function handleRemoveItem(item) {
+    try {
+        await remove(Ref(db, `users/${auth.currentUser.uid}/bills/${item.id}`))
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 function handleCheckItem(item) {
-    console.log(item)
     const updates = {};
     const itemUpdated = {
         ...item,
