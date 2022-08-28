@@ -8,8 +8,8 @@
                 <MaterialIconMagnify class="icon" />
             </div>
             <div class="list">
-                <fin-entry-dark v-for="bill in bills" :name="bill.name" :desc="bill.description" :date="bill.date"
-                    :value="bill.value" />
+                <fin-entry-dark :key="bill.id" v-for="bill in bills" :name="bill.name" :desc="bill.description" :date="bill.date"
+                    :value="bill.value" :payd="bill.payd" @remove="handleRemoveItem()" @check="handleCheckItem(bill)" />
             </div>
         </div>
     </div>
@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref as Ref, set, onValue } from "firebase/database";
+import { getDatabase, ref as Ref, set, onValue, update } from "firebase/database";
 import { useRouter } from "vue-router";
 
 const auth = getAuth();
@@ -47,6 +47,21 @@ async function handleGetBills() {
     } catch (e) {
         console.log(e)
     }
+}
+
+function handleRemoveItem() {
+    console.log('remove item')
+}
+
+function handleCheckItem(item) {
+    console.log(item)
+    const updates = {};
+    const itemUpdated = {
+        ...item,
+        payd: true
+    }
+    updates[`users/${auth.currentUser.uid}/bills/${item.id}`] = itemUpdated;
+    update(Ref(db), updates);
 }
 </script>
 

@@ -83,6 +83,10 @@ async function userLogOut() {
         .icon {
             color: rgb(226, 226, 226);
         }
+        .icon:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
 
         img {
             width: 45px;

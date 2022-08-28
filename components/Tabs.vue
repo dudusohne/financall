@@ -27,7 +27,6 @@
                 </div>
             </NuxtLink>
         </div>
-        <span :style="style">{{ actualRoute.toUpperCase().replace('/', '') }}</span>
     </div>
 </template>
 

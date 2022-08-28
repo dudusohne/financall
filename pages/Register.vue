@@ -63,6 +63,7 @@ async function handleRegisterBill() {
 
     try {
         await set(Ref(db, `users/${userId.value}/bills/${id}`), {
+            id: id,
             name: name.value,
             description: description.value ?? '',
             value: value.value ?? '',
@@ -71,7 +72,7 @@ async function handleRegisterBill() {
         });
 
         resetForm()
-        alert('BOLETO GUARDADO!')
+        alert('BOLETO SALVO COM SUCESSO!')
     } catch (e) {
         console.log(e);
     }

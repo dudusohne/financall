@@ -10,11 +10,12 @@
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref as Ref, set } from "firebase/database";
+import { getDatabase, ref as Ref, set, child, get, onValue } from "firebase/database";
 import { logIn } from '~~/composables/useAuth'
 import { useRouter } from 'vue-router'
 
 const db = getDatabase();
+const dbRef = ref(getDatabase())
 const auth = getAuth();
 
 const isLoading = ref()
@@ -23,10 +24,10 @@ const router = useRouter()
 async function authIn() {
     try {
         await logIn()
-        
+
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                updateUserInDatabase(auth)
+                createUserInDatabase(auth)
             }
         })
     } catch (e) {
@@ -34,19 +35,29 @@ async function authIn() {
     }
 }
 
-async function updateUserInDatabase(user) {
-    //this will maintain the user data from auth always updated.
+async function createUserInDatabase(user) {
+    const starCountRef = Ref(db, `users/${user.currentUser?.uid}`);
+    onValue(starCountRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+            router.push('/home')
+        } else {
+            createUserInDB(user)
+        }
+    });
+}
 
+async function createUserInDB(user) {
     try {
-        set(Ref(db, `users/${user.currentUser?.uid}`,), {
+        await set(Ref(db, `users/${user.currentUser?.uid}`,), {
             name: user.currentUser?.displayName,
             email: user.currentUser?.email,
-            photo: user.currentUser?.photoURL,
+            photo: user.currentUser?.photoURL
         });
-    } catch (e) {
-        console.log(e)
-    } finally {
+
         router.push('/home')
+    } catch (e) {
+        console.log('create', e.message);
     }
 }
 </script>
