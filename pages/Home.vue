@@ -70,7 +70,6 @@ function handleCheckItem(item) {
 
 <style lang="scss" scoped>
 .home {
-
     .container {
         display: flex;
         flex-direction: column;
