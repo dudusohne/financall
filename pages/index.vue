@@ -3,33 +3,36 @@
         <div class="container">
             <img src="../assets/images/fncall-logo.png" />
             <logo />
-            <button class="auth-button" @click="authIn" :loading="isLoading">ENTRAR</button>
+            <button class="auth-button" @click="authIn">
+                <span v-show="!isLoading">ENTRAR</span>
+                <FinSpinner v-show="isLoading" />
+            </button>
         </div>
     </main>
 </template>
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref as Ref, set, child, get, onValue } from "firebase/database";
+import { getDatabase, ref as Ref, set, onValue } from "firebase/database";
 import { logIn } from '~~/composables/useAuth'
 import { useRouter } from 'vue-router'
 
 const db = getDatabase();
-const dbRef = ref(getDatabase())
 const auth = getAuth();
 
 const isLoading = ref()
 const router = useRouter()
 
 async function authIn() {
+    isLoading.value = true
     try {
         await logIn()
-        
+
         initUser()
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                createUserInDatabase(auth)
+                checkIfUserExists(auth)
             }
         })
     } catch (e) {
@@ -37,7 +40,7 @@ async function authIn() {
     }
 }
 
-async function createUserInDatabase(user) {
+async function checkIfUserExists(user) {
     const starCountRef = Ref(db, `users/${user.currentUser?.uid}`);
     onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
@@ -59,7 +62,7 @@ async function createUserInDB(user) {
 
         router.push('/home')
     } catch (e) {
-        console.log('create', e.message);
+        console.log(e.message);
     }
 }
 </script>
@@ -90,6 +93,9 @@ main {
         }
 
         .auth-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             min-width: 6rem;
             height: 2.4rem;
             background-color: rgb(26, 25, 25);
@@ -104,7 +110,6 @@ main {
             cursor: pointer;
             border-color: orange;
             background-color: rgb(88, 88, 88);
-            border-radius: 6px;
             transform: scale(1.03);
         }
     }

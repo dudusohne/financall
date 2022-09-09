@@ -31,6 +31,8 @@ const value = useVModel<string>(props, emit, 'modelValue')
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/_global.scss';
+
 .fin-input {
     height: 2rem;
     width: 100%;
@@ -38,11 +40,11 @@ const value = useVModel<string>(props, emit, 'modelValue')
 
     background-color: rgba(238, 238, 238, 0.562);
 
-    border: 1px solid rgb(177, 177, 177);
+    border: 1px solid $tertiary;
     border-radius: 4px;
 
     font-size: 1.4rem;
-    font-family: 'Roboto';
+    font-family: $font;
     font-weight: bold;
 
     @media only screen and (max-device-width: 480px) {
@@ -50,8 +52,9 @@ const value = useVModel<string>(props, emit, 'modelValue')
         max-width: 400px;
     }
 }
+
 .fin-input:focus {
-    background-color: rgba(185, 185, 185, 0.562);
-    border: 1px solid #333;
+    background-color: $tertiary;
+    border: 1px solid $tertiary;
 }
 </style>

@@ -10,12 +10,15 @@
     </div>
 </template>
 
-<script lang="ts" setup>import { User } from '~~/types';
+<script lang="ts" setup>
+import { User } from '~~/types';
 
 const user = useCookie<User>('userCookie')
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/_global.scss';
+
 .profile {
     display: flex;
     flex-direction: column;
@@ -29,18 +32,18 @@ const user = useCookie<User>('userCookie')
         img {
             max-width: 6rem;
             border-radius: 50px;
-            border: 4px solid #1a1919;
+            border: 4px solid $primary;
         }
 
         span {
             font-weight: bold;
-            font-family: "Roboto";
+            font-family: $font;
         }
 
         span.user-name {
             font-weight: bold;
             font-size: 28px;
-            color: #1a1919;
+            color: $primary;
 
             margin-top: 1rem;
         }
@@ -48,7 +51,7 @@ const user = useCookie<User>('userCookie')
         span.user-email {
             font-weight: medium;
             font-size: 16px;
-            color: #3a3a3a;
+            color: $secondary;
 
             margin-top: 0.3rem;
         }

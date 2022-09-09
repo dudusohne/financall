@@ -31,7 +31,6 @@
 </template>
 
 <script lang="ts" setup>
-import { StyleValue } from 'vue';
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
@@ -57,13 +56,11 @@ function resolveColor() {
         color.value = '#d4b68a'
     }
 }
-
-const style = computed<StyleValue>(() => ({
-    'color': color.value
-}))
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/_global.scss';
+
 .fin-tabs {
     display: flex;
     flex-direction: row;
@@ -73,7 +70,7 @@ const style = computed<StyleValue>(() => ({
 
     span {
         font-size: 18px;
-        font-family: "Roboto";
+        font-family: $font;
         margin-right: 1%;
         margin-top: 8px;
         font-weight: bold;
@@ -96,12 +93,12 @@ const style = computed<StyleValue>(() => ({
         .icon {
             font-size: 2rem;
             align-self: flex-end;
-            color: rgb(26, 26, 26);
+            color: $secondary;
         }
     }
 
     div.item.is-active {
-        background-color: #1a1919;
+        background-color: $secondary;
         transform: translateY(5px);
 
         .icon {
@@ -115,23 +112,23 @@ const style = computed<StyleValue>(() => ({
     }
 
     .item-home {
-        background-color: rgb(217, 235, 211);
+        background-color: $home;
     }
 
     .item-profile {
-        background-color: rgb(201, 212, 138);
+        background-color: $profile;
     }
 
     .item-wallet {
-        background-color: rgb(212, 182, 138);
+        background-color: $wallet;
     }
 
     .item-dashboard {
-        background-color: rgb(138, 212, 200);
+        background-color: $dashboard;
     }
 
     .item-add {
-        background-color: rgb(97, 226, 161);
+        background-color: $primary;
     }
 }
 </style>
