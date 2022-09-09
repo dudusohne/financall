@@ -59,6 +59,8 @@ function handleCheckItem(item) {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/_global.scss';
+
 .home {
     .container {
         display: flex;
@@ -88,7 +90,7 @@ function handleCheckItem(item) {
 
                 border-radius: 9px;
 
-                border: 1px solid #333;
+                border: 1px solid $tertiary;
                 margin-top: 1rem;
 
                 @media only screen and (max-device-width: 480px) {

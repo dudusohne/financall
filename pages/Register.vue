@@ -83,6 +83,8 @@ function resetForm() {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/_global.scss';
+
 .register {
     display: flex;
     flex-direction: column;
@@ -96,11 +98,10 @@ function resetForm() {
         height: fit-content;
         max-width: 450px;
         width: 100%;
-
         margin-top: 2rem;
 
         .container-title {
-            color: #333;
+            color: $secondary;
             font-weight: bold;
             font-size: 1.3rem;
         }
@@ -110,17 +111,15 @@ function resetForm() {
             flex-direction: row;
             align-items: center;
             justify-content: center;
-
             margin-top: 1rem;
 
             .checkbox {
-                border: 1px solid #333;
+                border: 1px solid $secondary;
                 border-radius: 12px;
                 height: 2rem;
                 width: 2rem;
             }
         }
-
 
         button {
             height: 3rem;
@@ -130,11 +129,10 @@ function resetForm() {
             font-weight: bold;
             border-color: rgb(182, 182, 182);
             color: rgba(59, 59, 59, 0.925);
-
         }
 
         button:hover {
-            opacity: 0.7;
+            opacity: 0.8;
             cursor: pointer;
         }
 
@@ -147,8 +145,8 @@ function resetForm() {
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            background-color: rgb(151, 211, 102);
-
+            background-color: $primary;
+            color: $secondary;
             margin-left: 0.4rem;
         }
     }
@@ -163,7 +161,7 @@ function resetForm() {
         margin-left: 2rem;
         margin-top: 1rem;
         letter-spacing: 0.9px;
-        color: rgb(75, 75, 75);
+        color: $secondary;
     }
 }
 </style>

@@ -68,6 +68,8 @@ async function createUserInDB(user) {
 </script>
 
 <style lang="scss">
+@import '../styles/_global.scss';
+
 body {
     margin: 0;
 }
@@ -98,19 +100,24 @@ main {
             justify-content: center;
             min-width: 6rem;
             height: 2.4rem;
-            background-color: rgb(26, 25, 25);
+            background-color: $secondary;
             color: white;
 
-            border: 1px solid #333;
+            border: 1px solid $tertiary;
             border-radius: 8px;
             transition: all 0.4s ease-in-out;
+            font-weight: bold;
+            font-family: $font;
+            letter-spacing: 1px;
         }
 
         button.auth-button:hover {
             cursor: pointer;
             border-color: orange;
-            background-color: rgb(88, 88, 88);
+            background-color: #fff;
+            color: $secondary;
             transform: scale(1.03);
+            letter-spacing: 2px;
         }
     }
 }

@@ -8,13 +8,15 @@
   },
   "devDependencies": {
     "@nuxtjs/pwa": "^3.3.5",
+    "@nuxtjs/style-resources": "^1.2.1",
+    "node-sass": "^7.0.3",
     "nuxt": "3.0.0-rc.8",
-    "sass-loader": "10"
+    "sass-loader": "^13.0.2"
   },
   "dependencies": {
     "@nuxtjs/firebase": "^8.2.2",
     "@nuxtjs/google-fonts": "^3.0.0-0",
-    "@pinia/nuxt": "^0.4.1",
+    "@pinia/nuxt": "^0.4.2",
     "env": "^0.0.2",
     "firebase": "^9.9.3",
     "sass": "^1.54.5",

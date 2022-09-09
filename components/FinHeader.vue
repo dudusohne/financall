@@ -28,6 +28,8 @@ async function userLogOut() {
 </script>
 
 <style lang="scss" scoped>
+@import '../styles/_global.scss';
+
 .fin-header {
     display: flex;
     flex-direction: row;
@@ -39,8 +41,7 @@ async function userLogOut() {
     align-items: center;
     justify-content: space-between;
 
-    background-color:
-        #1a1919;
+    background-color: $secondary;
 
     z-index: 10;
 
@@ -66,7 +67,7 @@ async function userLogOut() {
             font-family: "Roboto";
             font-weight: bold;
             letter-spacing: 1px;
-            color: #50a261;
+            color: $primary;
         }
     }
 
@@ -78,7 +79,7 @@ async function userLogOut() {
         margin-right: 1%;
 
         .icon {
-            color: rgb(226, 226, 226);
+            color: $tertiary;
         }
 
         .icon:hover {
@@ -90,7 +91,7 @@ async function userLogOut() {
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background-color: rgb(85, 85, 85);
+            background-color: $tertiary;
         }
     }
 

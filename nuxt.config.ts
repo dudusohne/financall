@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   buildModules: [
     "@nuxtjs/google-fonts",
     "@pinia/nuxt",
+    "@nuxtjs/style-resources",
     "~/modules/material-design-icons.js",
   ],
   modules: [GoogleFontsModule],
@@ -54,5 +55,9 @@ export default defineNuxtConfig({
     externals: {
       inline: ["uuid"],
     },
-  }
+  },
+  css: ["~assets/scss/global.scss"],
+  styleResources: {
+    scss: ["./assets/scss/*.scss"],
+  },
 });
