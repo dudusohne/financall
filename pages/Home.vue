@@ -8,38 +8,28 @@
                 <MaterialIconMagnify class="icon" />
             </div>
             <div class="list">
-                <fin-entry-dark :key="bill.id" v-for="bill in bills" :name="bill.name" :desc="bill.description" :date="bill.date"
-                    :value="bill.value" :payd="bill.payd" @remove="handleRemoveItem(bill)" @check="handleCheckItem(bill)" />
+                <fin-entry-dark :key="bill.id" v-for="bill in bills" :name="bill.name" :desc="bill.description"
+                    :date="bill.date" :value="bill.value" :payd="bill.payd" @remove="handleRemoveItem(bill)"
+                    @check="handleCheckItem(bill)" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref as Ref, remove, onValue, update } from "firebase/database";
-import { useRouter } from "vue-router";
 
-const auth = getAuth();
-
-const router = useRouter()
+const auth = useCookie<any>('userCookie')
 
 const db = getDatabase();
 
 const bills = ref()
 
-onBeforeMount(() => {
-    onAuthStateChanged(auth, (user) => {
-        if (!user) {
-            router.push('/')
-        }
-        handleGetBills()
-    })
-})
+onBeforeMount(() => handleGetBills())
 
 async function handleGetBills() {
     try {
-        const starCountRef = Ref(db, `users/${auth.currentUser.uid}/bills`);
+        const starCountRef = Ref(db, `users/${auth.value?.uid}/bills`);
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
             bills.value = data
@@ -51,7 +41,7 @@ async function handleGetBills() {
 
 async function handleRemoveItem(item) {
     try {
-        await remove(Ref(db, `users/${auth.currentUser.uid}/bills/${item.id}`))
+        await remove(Ref(db, `users/${auth.value?.uid}/bills/${item.id}`))
     } catch (e) {
         console.log(e)
     }
@@ -63,7 +53,7 @@ function handleCheckItem(item) {
         ...item,
         payd: true
     }
-    updates[`users/${auth.currentUser.uid}/bills/${item.id}`] = itemUpdated;
+    updates[`users/${auth.value?.uid}/bills/${item.id}`] = itemUpdated;
     update(Ref(db), updates);
 }
 </script>

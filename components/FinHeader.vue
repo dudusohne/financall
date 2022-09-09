@@ -12,12 +12,9 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthUser } from '~~/composables/useAuthUser'
 import { logOut } from '~~/composables/useAuth'
-import { useRouter } from 'vue-router'
 
-const user: Record<string, string> = useAuthUser()
-const router = useRouter()
+const user = useCookie<any>('userCookie')
 
 async function userLogOut() {
     try {
@@ -25,7 +22,7 @@ async function userLogOut() {
     } catch (e) {
         console.log(e)
     } finally {
-        router.push('/')
+        navigateTo('/')
     }
 }
 </script>
@@ -83,6 +80,7 @@ async function userLogOut() {
         .icon {
             color: rgb(226, 226, 226);
         }
+
         .icon:hover {
             cursor: pointer;
             opacity: 0.8;

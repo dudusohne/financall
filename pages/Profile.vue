@@ -10,9 +10,9 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-import { useAuthUser } from '~~/composables/useAuthUser';
-const user: any = useAuthUser()
+<script lang="ts" setup>import { User } from '~~/types';
+
+const user = useCookie<User>('userCookie')
 </script>
 
 <style lang="scss" scoped>

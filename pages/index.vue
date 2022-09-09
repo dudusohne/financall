@@ -24,6 +24,8 @@ const router = useRouter()
 async function authIn() {
     try {
         await logIn()
+        
+        initUser()
 
         onAuthStateChanged(auth, (user) => {
             if (user) {

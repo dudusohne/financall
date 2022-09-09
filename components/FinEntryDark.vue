@@ -26,8 +26,8 @@ interface EntryProps {
     date: string;
     value: string;
     payd?: boolean;
-    remove?: any;
-    check?: any;
+    remove?: () => void;
+    check?: () => void;
 }
 
 const props = withDefaults(defineProps<EntryProps>(), {

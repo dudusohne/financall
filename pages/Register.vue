@@ -37,26 +37,16 @@
 
 <script lang="ts" setup>
 import { getDatabase, ref as Ref, set } from "firebase/database";
-import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from 'uuid';
 
-const auth = getAuth();
+const auth = useCookie<any>('userCookie')
 const db = getDatabase();
-
-const router = useRouter()
 
 const name = ref<string>()
 const description = ref<string>()
 const value = ref<string>()
 const date = ref<string>()
 const payd = ref<boolean>()
-const userId = ref<string>()
-const user = ref()
-
-onMounted(() => {
-    user.value = auth.currentUser;
-    userId.value = auth.currentUser.uid;
-})
 
 async function handleRegisterBill() {
     const id = uuidv4();
@@ -67,7 +57,7 @@ async function handleRegisterBill() {
     }
 
     try {
-        await set(Ref(db, `users/${userId.value}/bills/${id}`), {
+        await set(Ref(db, `users/${auth.value?.uid}/bills/${id}`), {
             id: id,
             name: name.value,
             description: description.value ?? '',

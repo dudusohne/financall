@@ -1,6 +1,5 @@
 import { getApps, initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import { initUser } from '~~/composables/useAuth'
 
 export default defineNuxtPlugin(() => {
   const config = useRuntimeConfig()
@@ -19,8 +18,6 @@ export default defineNuxtPlugin(() => {
   const apps = getApps()
   const firebaseApp = !apps.length ? initializeApp(firebaseConfig) : apps[0]
   const firebaseAuth = getAuth(firebaseApp)
-
-  initUser()
 
   return {
     provide: {

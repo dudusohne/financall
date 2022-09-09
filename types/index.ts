@@ -8,8 +8,21 @@ export type Bill = {
 };
 
 export interface User {
+  uid?: string;
   name?: string;
   email?: string;
   bills?: Bill[];
   balance?: string;
+  photoURL?: string;
+  displayName?: string;
+}
+
+export interface EntryProps {
+  name: string;
+  desc?: string;
+  date: string;
+  value: string;
+  payd?: boolean;
+  remove?: () => void;
+  check?: () => void;
 }

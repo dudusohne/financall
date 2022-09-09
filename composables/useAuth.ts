@@ -1,21 +1,20 @@
-// https://firebase.google.com/docs/auth/web/start
-
 import {
     getAuth,
     onAuthStateChanged,
     signOut,
     GoogleAuthProvider,
     signInWithPopup,
-  } from 'firebase/auth'
+  } from 'firebase/auth';
+import { User } from '~~/types';
   
-  import { useAuthUser } from './useAuthUser'
+  import { useAuthUser } from './useAuthUser';
   
   export function initUser() {
     const auth = getAuth()
     const authUser = useAuthUser()
     authUser.value = auth.currentUser
   
-    const userCookie = useCookie('userCookie')
+    const userCookie = useCookie<User>('userCookie')
   
     onAuthStateChanged(auth, user => {
       authUser.value = user
