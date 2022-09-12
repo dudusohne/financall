@@ -17,8 +17,6 @@ const user = useCookie<User>('userCookie')
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
-
 .profile {
     display: flex;
     flex-direction: column;
@@ -44,7 +42,6 @@ const user = useCookie<User>('userCookie')
             font-weight: bold;
             font-size: 28px;
             color: $primary;
-
             margin-top: 1rem;
         }
 
@@ -52,7 +49,6 @@ const user = useCookie<User>('userCookie')
             font-weight: medium;
             font-size: 16px;
             color: $secondary;
-
             margin-top: 0.3rem;
         }
     }

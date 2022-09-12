@@ -59,9 +59,10 @@ function handleCheckItem(item) {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
+/* @import 'assets/scss/global.scss'; */
 
 .home {
+
     .container {
         display: flex;
         flex-direction: column;
@@ -87,9 +88,7 @@ function handleCheckItem(item) {
                 width: 90%;
                 height: 2rem;
                 max-width: 560px;
-
                 border-radius: 9px;
-
                 border: 1px solid $tertiary;
                 margin-top: 1rem;
 
@@ -105,7 +104,6 @@ function handleCheckItem(item) {
             flex-direction: column;
             width: 100%;
             align-items: center;
-
             margin-top: 5px;
         }
     }

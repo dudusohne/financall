@@ -5,11 +5,4 @@ export default defineConfig({
     include: ["./store/*.test.ts", "./database/*.test.ts", "./src/*.test.ts"],
     testTimeout: 15000,
   },
-  css: {
-    preprocessorOptions: {
-      sass: {
-        additionalData: '@import "@/assets/scss/global.scss"',
-      },
-    },
-  }
 });

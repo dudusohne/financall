@@ -15,10 +15,12 @@ export default defineNuxtConfig({
       Mulish: true,
     },
   },
-  head: {
-    title: "financAll",
-    meta: [{ charset: "utf-8" }],
-  },
+  meta: [
+    { charset: "utf-8" },
+    { name: "viewport", content: "width=device-width, initial-scale=1" },
+    { hid: "description", name: "description", content: "" },
+    { name: "format-detection", content: "telephone=no" },
+  ],
   env: {
     baseURL: process.env.BASE_URL,
   },
@@ -56,8 +58,14 @@ export default defineNuxtConfig({
       inline: ["uuid"],
     },
   },
-  css: ["~assets/scss/global.scss"],
-  styleResources: {
-    scss: ["./assets/scss/*.scss"],
+  scss: ["assets/scss/global.scss"],
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "/assets/scss/global.scss";',
+        },
+      },
+    },
   },
 });

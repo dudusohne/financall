@@ -27,18 +27,17 @@ const auth = useAuthUser()
         height: fit-content;
         max-width: 450px;
         width: 100%;
-
         margin-top: 8rem;
 
         .container-title {
-            color: #333;
+            color: $secondary;
             font-weight: bold;
             font-size: 1.3rem;
             font-family: 'Roboto';
         }
 
         .container-description {
-            color: #333;
+            color: $secondary;
             font-weight: bold;
             font-size: 1.8rem;
             font-family: 'Roboto';
@@ -53,12 +52,12 @@ const auth = useAuthUser()
         button {
             display: flex;
             padding: 15px;
-            background-color: #61e2a1;
+            background-color: $primary;
             border-radius: 12px;
             border: none;
             margin-top: 3rem;
             font-weight: bold;
-            color: #333;
+            color: $secondary;
         }
 
         button:hover {
@@ -66,7 +65,5 @@ const auth = useAuthUser()
             cursor: pointer;
         }
     }
-
-
 }
 </style>

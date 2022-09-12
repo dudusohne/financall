@@ -50,7 +50,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
     align-items: center;
 
     border-radius: 12px;
-    border: 1px solid rgb(184, 184, 184);
+    border: 1px solid $tertiary;
 
     background-image: linear-gradient(95.2deg, rgb(237, 252, 173) 26.8%, rgb(234, 246, 192) 64%);
     margin-top: 10px;
@@ -69,7 +69,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
         .name {
             font-size: 1.3rem;
             font-family: "Roboto";
-            color: #1a1919;
+            color: $secondary;
             letter-spacing: 1.5px;
             font-weight: bold;
             font-variant: small-caps;
@@ -78,15 +78,15 @@ const props = withDefaults(defineProps<EntryProps>(), {
         .name.text-payd {
             font-size: 1.2rem;
             font-family: "Roboto";
-            color: #8b8b8b;
-            text-decoration: line-through solid #8b8b8b;
+            color: $text-secondary;
+            text-decoration: line-through solid $text-secondary;
         }
 
         .desc {
             font-size: 1.1rem;
             font-weight: medium;
             font-family: "Roboto";
-            color: #1a1919;
+            color: $secondary;
             letter-spacing: 2.2px;
             font-variant: small-caps;
             text-transform: lowercase;
@@ -97,8 +97,8 @@ const props = withDefaults(defineProps<EntryProps>(), {
             font-weight: bold;
             font-family: "Roboto";
             letter-spacing: 2px;
-            color: #8b8b8b;
-            text-decoration: line-through solid #8b8b8b;
+            color: $text-secondary;
+            text-decoration: line-through solid $text-secondary;
         }
     }
 
@@ -111,7 +111,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
         .value {
             font-size: 1.3rem;
             font-family: "Roboto";
-            color: #1a1919;
+            color: $secondary;
             letter-spacing: 2.2px;
             font-weight: bold;
             font-variant: small-caps;
@@ -122,8 +122,8 @@ const props = withDefaults(defineProps<EntryProps>(), {
             font-weight: bold;
             font-family: "Roboto";
             letter-spacing: 2px;
-            color: #9e9c9c;
-            text-decoration: line-through solid #8b8b8b;
+            color: $text-secondary;
+            text-decoration: line-through solid $text-secondary;
         }
 
         .date {
@@ -140,8 +140,8 @@ const props = withDefaults(defineProps<EntryProps>(), {
             font-weight: bold;
             font-family: "Roboto";
             letter-spacing: 2px;
-            color: #8b8b8b;
-            text-decoration: line-through solid #8b8b8b;
+            color: $text-secondary;
+            text-decoration: line-through solid $text-secondary;
         }
     }
 
@@ -163,7 +163,7 @@ const props = withDefaults(defineProps<EntryProps>(), {
             margin-right: 4px;
 
             border-radius: 8px;
-            border: 1px solid #333;
+            border: 1px solid $secondary;
 
             .icon {
                 color: red;

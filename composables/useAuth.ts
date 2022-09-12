@@ -1,33 +1,24 @@
 import {
-    getAuth,
-    onAuthStateChanged,
-    signOut,
-    GoogleAuthProvider,
-    signInWithPopup,
-  } from 'firebase/auth';
-import { User } from '~~/types';
-  
-  import { useAuthUser } from './useAuthUser';
-  
-  export function initUser() {
-    const auth = getAuth()
-    const authUser = useAuthUser()
-    authUser.value = auth.currentUser
-  
-    const userCookie = useCookie<User>('userCookie')
-  
-    onAuthStateChanged(auth, user => {
-      authUser.value = user
-  
-      // @ts-ignore
-      userCookie.value = user // ignore error because nuxt will serialize to json
-    })
-  }
-  
-  export async function logIn() {
-    await signInWithPopup(getAuth(), new GoogleAuthProvider())
-  }
-  
-  export async function logOut() {
-    await signOut(getAuth())
-  }
+  getAuth,
+  onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { User } from "~~/types";
+
+export function initUser() {
+  const auth = getAuth();
+
+  const userCookie = useCookie<User>("userCookie");
+
+  onAuthStateChanged(auth, (user) => (userCookie.value = user));
+}
+
+export async function logIn() {
+  await signInWithPopup(getAuth(), new GoogleAuthProvider());
+}
+
+export async function logOut() {
+  await signOut(getAuth());
+}

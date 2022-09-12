@@ -15,13 +15,11 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref as Ref, set, onValue } from "firebase/database";
 import { logIn } from '~~/composables/useAuth'
-import { useRouter } from 'vue-router'
 
 const db = getDatabase();
 const auth = getAuth();
 
 const isLoading = ref()
-const router = useRouter()
 
 async function authIn() {
     isLoading.value = true
@@ -45,7 +43,7 @@ async function checkIfUserExists(user) {
     onValue(starCountRef, (snapshot) => {
         const data = snapshot.val();
         if (data) {
-            router.push('/home')
+            navigateTo('/home')
         } else {
             createUserInDB(user)
         }
@@ -60,7 +58,7 @@ async function createUserInDB(user) {
             photo: user.currentUser?.photoURL
         });
 
-        router.push('/home')
+        navigateTo('/home')
     } catch (e) {
         console.log(e.message);
     }
@@ -68,8 +66,6 @@ async function createUserInDB(user) {
 </script>
 
 <style lang="scss">
-@import '../styles/_global.scss';
-
 body {
     margin: 0;
 }

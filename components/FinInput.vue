@@ -31,8 +31,6 @@ const value = useVModel<string>(props, emit, 'modelValue')
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
-
 .fin-input {
     height: 2rem;
     width: 100%;

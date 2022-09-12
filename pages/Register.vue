@@ -83,11 +83,10 @@ function resetForm() {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
-
 .register {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 
     .container {
         display: flex;

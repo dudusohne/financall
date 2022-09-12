@@ -34,8 +34,8 @@
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const actualRoute = ref(route.fullPath)
-const routeMin = actualRoute.value.replace('/', '')
+const actualRoute = ref(route?.fullPath)
+const routeMin = actualRoute.value?.replace('/', '')
 const color = ref()
 
 onBeforeMount(() => {
@@ -59,8 +59,6 @@ function resolveColor() {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
-
 .fin-tabs {
     display: flex;
     flex-direction: row;

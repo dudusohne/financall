@@ -13,8 +13,9 @@
 
 <script setup lang="ts">
 import { logOut } from '~~/composables/useAuth'
+import { User } from '~~/types';
 
-const user = useCookie<any>('userCookie')
+const user = useCookie<User>('userCookie')
 
 async function userLogOut() {
     try {
@@ -28,8 +29,6 @@ async function userLogOut() {
 </script>
 
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
-
 .fin-header {
     display: flex;
     flex-direction: row;

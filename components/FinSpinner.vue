@@ -2,11 +2,7 @@
     <div class="loading"></div>
 </template>
 
-<script></script>
-
 <style lang="scss" scoped>
-@import '../styles/_global.scss';
-
 .loading {
     width: 20px;
     height: 20px;
