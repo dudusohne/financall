@@ -15,6 +15,11 @@ export interface User {
   balance?: string;
   photoURL?: string;
   displayName?: string;
+  stsTokenManager?: TokenProps;
+}
+
+interface TokenProps {
+  accessToken?: string;
 }
 
 export interface EntryProps {

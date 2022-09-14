@@ -9,10 +9,6 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-const auth = useAuthUser()
-</script>
-
 <style lang="scss" scoped>
 .not-found {
     display: flex;
