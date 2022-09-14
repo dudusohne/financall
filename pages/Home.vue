@@ -18,8 +18,9 @@
 
 <script setup lang="ts">
 import { getDatabase, ref as Ref, remove, onValue, update } from "firebase/database";
+import { User } from '~~/types';
 
-const auth = useCookie<any>('userCookie')
+const auth = useCookie<User>('userCookie')
 
 const db = getDatabase();
 
