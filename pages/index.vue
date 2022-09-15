@@ -34,7 +34,7 @@ async function authIn() {
             }
         })
     } catch (e) {
-        console.log(e)
+        console.log(e.message)
     }
 }
 
@@ -98,7 +98,6 @@ main {
             height: 2.4rem;
             background-color: $secondary;
             color: white;
-
             border: 1px solid $tertiary;
             border-radius: 8px;
             transition: all 0.4s ease-in-out;

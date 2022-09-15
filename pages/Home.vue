@@ -21,9 +21,7 @@ import { getDatabase, ref as Ref, remove, onValue, update } from "firebase/datab
 import { User } from '~~/types';
 
 const auth = useCookie<User>('userCookie')
-
 const db = getDatabase();
-
 const bills = ref()
 
 onBeforeMount(() => handleGetBills())
@@ -61,7 +59,6 @@ function handleCheckItem(item) {
 
 <style lang="scss" scoped>
 .home {
-
     .container {
         display: flex;
         flex-direction: column;
