@@ -83,7 +83,6 @@ function resolveColor() {
         box-shadow: 1px 1px rgb(175, 175, 175);
         transition: all 0.3s ease-in-out;
         text-align: center;
-
         margin-left: 3px;
         margin-top: -10px;
         padding-top: 10px;
