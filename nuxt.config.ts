@@ -38,6 +38,11 @@ export default defineNuxtConfig({
       firebaseAppId: process.env.NUXT_PUBLIC_FIREBASE_APP_ID ?? "",
     },
   },
+  firestore: {
+    memoryOnly: false, // default
+    chunkName: process.env.NODE_ENV !== 'production' ? 'firebase-auth' : '[id]', // default
+    enablePersistence: true,
+  },
   pwa: {
     workbox: {
       importScripts: ["/firebase-auth-sw.js"],

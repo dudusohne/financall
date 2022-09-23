@@ -15,6 +15,7 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDatabase, ref as Ref, set, onValue } from "firebase/database";
 import { logIn } from '~~/composables/useAuth'
+import { doc, setDoc } from "firebase/firestore";
 
 const db = getDatabase();
 const auth = getAuth();
@@ -28,31 +29,40 @@ async function authIn() {
 
         initUser()
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                checkIfUserExists(auth)
-            }
-        })
+        checkIfUserExists(auth)
+        // onAuthStateChanged(auth, (user) => {
+        //     if (user) {
+        //     }
+        // })
     } catch (e) {
         console.log(e.message)
     }
 }
 
 async function checkIfUserExists(user) {
-    const starCountRef = Ref(db, `users/${user.currentUser?.uid}`);
-    onValue(starCountRef, (snapshot) => {
-        const data = snapshot.val();
-        if (data) {
-            navigateTo('/home')
-        } else {
-            createUserInDB(user)
-        }
-    });
+    createUserInDB(user)
+
+    // const starCountRef = Ref(db, `users/${user.currentUser?.uid}`);
+    // onValue(starCountRef, (snapshot) => {
+    //     const data = snapshot.val();
+    //     if (data) {
+    //         navigateTo('/home')
+    //     } else {
+    //         createUserInDB(user)
+    //     }
+    // });
 }
 
 async function createUserInDB(user) {
+    const firestoredb = this?.$fireModule.firestore?.collection('users')
     try {
-        await set(Ref(db, `users/${user.currentUser?.uid}`,), {
+        // await set(Ref(db, `users/${user.currentUser?.uid}`,), {
+        //     name: user.currentUser?.displayName,
+        //     email: user.currentUser?.email,
+        //     photo: user.currentUser?.photoURL
+        // });
+
+        await setDoc(doc(firestoredb, `${user.currentUser?.uid}`), {
             name: user.currentUser?.displayName,
             email: user.currentUser?.email,
             photo: user.currentUser?.photoURL

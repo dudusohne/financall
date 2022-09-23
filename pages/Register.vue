@@ -3,19 +3,22 @@
         <fin-header />
         <fin-tabs />
         <div class="container" as="form">
-            <span class="container-title">REGISTER A NEW BILL</span>
+            <span class="container-title">REGISTRE UMA NOVA CONTA</span>
 
-            <span class="name label" style="margin-top: 5rem;">NAME</span>
+            <span class="name label" style="margin-top: 5rem;">NOME</span>
             <fin-input v-model="name" />
 
-            <span class="description label">DESCRIPTION</span>
+            <span class="description label">DESCRIÇÃO (opcional)</span>
             <fin-input v-model="description" />
 
-            <span class="value label">VALUE</span>
+            <span class="value label">VALOR</span>
             <fin-input v-model="value" />
 
-            <span class="date label">DATE</span>
-            <fin-input v-model="date" />
+            <div style="display: flex; flex-direction: row; margin-top: 1.5rem; align-items: center;">
+
+                <span class="date label" style="margin-top: 8px; margin-right: 2px;">VENCIMENTO:</span>
+                <datepicker v-model="date" />
+            </div>
 
             <div class="container-checkbox">
                 <span class="date label">PAID</span>
@@ -36,17 +39,20 @@
 </template>
 
 <script lang="ts" setup>
-import { getDatabase, ref as Ref, set } from "firebase/database";
+import { ref as Ref, set, getDatabase } from 'firebase/database';
 import { v4 as uuidv4 } from 'uuid';
+import Datepicker from '../components/Datepicker/Datepicker.vue'
+import { doc, setDoc } from "firebase/firestore";
 
 const auth = useCookie<any>('userCookie')
-const db = getDatabase();
 
 const name = ref<string>()
 const description = ref<string>()
 const value = ref<string>()
-const date = ref<string>()
+const date = ref<Date>(new Date())
 const payd = ref<boolean>()
+
+// const db = this?.$fireModule.firestore?.collection('users')
 
 async function handleRegisterBill() {
     const id = uuidv4();
@@ -55,16 +61,24 @@ async function handleRegisterBill() {
         alert('name field is required')
         return
     }
-
+    console.log(date.value)
     try {
-        await set(Ref(db, `users/${auth.value?.uid}/bills/${id}`), {
-            id: id,
-            name: name.value,
-            description: description.value ?? '',
-            value: value.value ?? '',
-            date: date.value ?? '',
-            payd: payd.value ?? false
-        });
+        //realtime database query
+        // await set(Ref(db, `users/${auth.value?.uid}/bills/${id}`), {
+        //     id: id,
+        //     name: name.value,
+        //     description: description.value ?? '',
+        //     value: value.value ?? '',
+        //     date: date.value ?? '',
+        //     payd: payd.value ?? false
+        // });
+
+        //firestore database query
+        // await setDoc(doc(db, "SF"), {
+        //     name: "San Francisco", state: "CA", country: "USA",
+        //     capital: false, population: 860000,
+        //     regions: ["west_coast", "norcal"]
+        // });
 
         resetForm()
         alert('BOLETO SALVO COM SUCESSO!')
@@ -77,8 +91,8 @@ function resetForm() {
     name.value = ''
     description.value = ''
     value.value = ''
-    date.value = ''
     payd.value = false
+    date.value = new Date()
 }
 </script>
 
