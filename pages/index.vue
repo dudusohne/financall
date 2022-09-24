@@ -13,14 +13,13 @@
 
 <script setup lang="ts">
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDatabase, ref as Ref, set, onValue } from "firebase/database";
 import { logIn } from '~~/composables/useAuth'
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getFirestore, getDoc } from "firebase/firestore";
 
-const db = getDatabase();
-const auth = getAuth();
-
+const dbFire = getFirestore()
 const isLoading = ref()
+
+const auth = getAuth();
 
 async function authIn() {
     isLoading.value = true
@@ -29,48 +28,38 @@ async function authIn() {
 
         initUser()
 
-        checkIfUserExists(auth)
-        // onAuthStateChanged(auth, (user) => {
-        //     if (user) {
-        //     }
-        // })
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                checkIfUserExists(auth)
+            }
+        })
     } catch (e) {
         console.log(e.message)
     }
 }
 
-async function checkIfUserExists(user) {
-    createUserInDB(user)
-
-    // const starCountRef = Ref(db, `users/${user.currentUser?.uid}`);
-    // onValue(starCountRef, (snapshot) => {
-    //     const data = snapshot.val();
-    //     if (data) {
-    //         navigateTo('/home')
-    //     } else {
-    //         createUserInDB(user)
-    //     }
-    // });
-}
-
-async function createUserInDB(user) {
-    const firestoredb = this?.$fireModule.firestore?.collection('users')
+async function createUserInDB(user: any) {
     try {
-        // await set(Ref(db, `users/${user.currentUser?.uid}`,), {
-        //     name: user.currentUser?.displayName,
-        //     email: user.currentUser?.email,
-        //     photo: user.currentUser?.photoURL
-        // });
-
-        await setDoc(doc(firestoredb, `${user.currentUser?.uid}`), {
+        await setDoc(doc(dbFire, "users", `${user.currentUser?.uid}`), {
             name: user.currentUser?.displayName,
             email: user.currentUser?.email,
-            photo: user.currentUser?.photoURL
+            photo: user.currentUser?.photoURL,
         });
 
-        navigateTo('/home')
+        navigateTo("/home");
     } catch (e) {
         console.log(e.message);
+    }
+}
+
+async function checkIfUserExists(user: any) {
+    const docRef = doc(dbFire, "users", `${user.currentUser?.uid}`);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+        navigateTo("/home");
+    } else {
+        createUserInDB(user);
     }
 }
 </script>
