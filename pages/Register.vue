@@ -14,23 +14,26 @@
             <span class="value label">VALOR</span>
             <fin-input v-model="value" />
 
-            <div style="display: flex; flex-direction: row; margin-top: 1.5rem; align-items: center;">
+            <fin-divider style="margin-top: 0.4rem;" />
 
+            <div style="display: flex; flex-direction: column; width: 100%;">
                 <span class="date label" style="margin-top: 8px; margin-right: 2px;">VENCIMENTO:</span>
                 <datepicker v-model="date" />
             </div>
 
             <div class="container-checkbox">
-                <span class="date label">PAID</span>
+                <span class="label" style="margin-top: 10px;">PAGO</span>
                 <input type="checkbox" class="checkbox" v-model="payd" />
             </div>
+
+            <fin-divider style="margin-top: 0.4rem;" />
 
             <div style="display: flex; flex-direction: row; margin-top: 2rem;">
                 <button class="button-clear" @click="resetForm">
                     <MaterialIconBroom class="icon" />
                 </button>
                 <button class="button-send" type="submit" @click="handleRegisterBill()">
-                    SAVE
+                    CADASTRAR
                     <MaterialIconContentSavePlusOutline class="icon" style="margin-left: 5px" />
                 </button>
             </div>
@@ -39,10 +42,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref as Ref, set, getDatabase } from 'firebase/database';
+import { getFirestore, setDoc, doc } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import Datepicker from '../components/Datepicker/Datepicker.vue'
-import { doc, setDoc } from "firebase/firestore";
 
 const auth = useCookie<any>('userCookie')
 
@@ -52,36 +54,33 @@ const value = ref<string>()
 const date = ref<Date>(new Date())
 const payd = ref<boolean>()
 
-// const db = this?.$fireModule.firestore?.collection('users')
+const dbFire = getFirestore()
 
 async function handleRegisterBill() {
     const id = uuidv4();
 
     if (!name.value) {
-        alert('name field is required')
+        alert('Campo NOME é obrigatório!')
         return
     }
-    console.log(date.value)
-    try {
-        //realtime database query
-        // await set(Ref(db, `users/${auth.value?.uid}/bills/${id}`), {
-        //     id: id,
-        //     name: name.value,
-        //     description: description.value ?? '',
-        //     value: value.value ?? '',
-        //     date: date.value ?? '',
-        //     payd: payd.value ?? false
-        // });
 
-        //firestore database query
-        // await setDoc(doc(db, "SF"), {
-        //     name: "San Francisco", state: "CA", country: "USA",
-        //     capital: false, population: 860000,
-        //     regions: ["west_coast", "norcal"]
-        // });
+    if (!value.value) {
+        alert('Campo VALOR é obrigatório!')
+        return
+    }
+
+    try {
+        await setDoc(doc(dbFire, `users/${auth.value?.uid}/bills/`, `${id}`), {
+            id: id,
+            name: name.value,
+            description: description.value ?? '',
+            value: value.value ?? '',
+            date: date.value ?? '',
+            payd: payd.value ?? false
+        });
 
         resetForm()
-        alert('BOLETO SALVO COM SUCESSO!')
+        alert('CONTA SALVA COM SUCESSO!')
     } catch (e) {
         console.log(e);
     }
@@ -123,7 +122,7 @@ function resetForm() {
             display: flex;
             flex-direction: row;
             align-items: center;
-            justify-content: center;
+            width: 100%;
             margin-top: 1rem;
 
             .checkbox {

@@ -3,7 +3,7 @@ export type Bill = {
   name: string;
   description?: string;
   value?: string;
-  date?: string;
+  date?: Date;
   payd?: boolean;
 };
 

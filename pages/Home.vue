@@ -17,43 +17,53 @@
 </template>
 
 <script setup lang="ts">
-import { getDatabase, ref as Ref, remove, onValue, update } from "firebase/database";
-import { User } from '~~/types';
+import { getFirestore, collection, query, getDocs, doc, updateDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
+import { Bill, User } from '~~/types';
 
 const auth = useCookie<User>('userCookie')
-const db = getDatabase();
-const bills = ref()
+
+const bills = ref<Bill[]>([])
+
+const dbFire = getFirestore()
 
 onBeforeMount(() => handleGetBills())
 
 async function handleGetBills() {
     try {
-        const starCountRef = Ref(db, `users/${auth.value?.uid}/bills`);
-        onValue(starCountRef, (snapshot) => {
-            const data = snapshot.val();
-            bills.value = data
+        const q = query(collection(dbFire, `users/${auth.value?.uid}/bills/`));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const item: Bill = {
+                    ...doc.data(),
+                    id: doc.data().id,
+                    name: doc.data().name,
+                    value: doc.data().value,
+                    date: doc.data().date?.toDate()?.toLocaleDateString()
+                }
+                bills.value.push(item);
+            });
+            console.log(bills)
         });
     } catch (e) {
         console.log(e)
+    } finally {
     }
 }
 
-async function handleRemoveItem(item) {
+async function handleRemoveItem(item: Bill) {
     try {
-        await remove(Ref(db, `users/${auth.value?.uid}/bills/${item.id}`))
+        await deleteDoc(doc(dbFire, `users/${auth.value?.uid}/bills/`, `${item.id}`));
     } catch (e) {
         console.log(e)
     }
 }
 
-function handleCheckItem(item) {
-    const updates = {};
-    const itemUpdated = {
-        ...item,
+async function handleCheckItem(item: Bill) {
+    const billRef = doc(dbFire, `users/${auth.value?.uid}/bills/`, `${item.id}`);
+
+    await updateDoc(billRef, {
         payd: true
-    }
-    updates[`users/${auth.value?.uid}/bills/${item.id}`] = itemUpdated;
-    update(Ref(db), updates);
+    });
 }
 </script>
 

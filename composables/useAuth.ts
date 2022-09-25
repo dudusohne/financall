@@ -6,17 +6,13 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { User } from "~~/types";
-import { doc, setDoc, getFirestore, getDoc } from "firebase/firestore";
 
-
-export function initUser() {
+export async function initUser() {
   const auth = getAuth();
 
   const userCookie = useCookie<User>("userCookie");
-
+  
   onAuthStateChanged(auth, (user) => (userCookie.value = user));
-
-  // checkIfUserExists(userCookie.value);
 }
 
 export async function logIn() {
@@ -26,5 +22,3 @@ export async function logIn() {
 export async function logOut() {
   await signOut(getAuth());
 }
-
-

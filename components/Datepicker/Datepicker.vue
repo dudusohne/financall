@@ -3,7 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import './css.json'
 import Datepicker from 'vue3-datepicker'
 
 const test = ref(new Date())
@@ -17,6 +16,8 @@ const style = {
     fontWeight: 'bold',
     backgroundColor: '#333',
     color: '#fff',
+    width: '100px',
+    marginLeft: '2rem',
 
     "--vdp-bg-color": "#262626",
     "--vdp-text-color": "#dedede",

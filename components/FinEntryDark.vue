@@ -1,11 +1,11 @@
 <template>
-    <div class="fin-entry-dark" :class="!!props.payd ? 'payd' : ''">
+    <div class="fin-entry-dark" :class="!!props.payd ? 'payd' : ''" v-if="!!props.name">
         <div class="left-items">
             <span class="name" :class="!!props.payd ? 'text-payd' : ''">{{ props.name }}</span>
             <span class="desc" :class="!!props.payd ? 'text-payd' : ''">{{ props.desc }}</span>
         </div>
         <div class="right-items">
-            <span class="value" :class="!!props.payd ? 'text-payd' : ''">{{ props.value }}</span>
+            <span class="value" :class="!!props.payd ? 'text-payd' : ''" v-if="!!props.value">R$ {{ props.value }}</span>
             <span class="date" :class="!!props.payd ? 'text-payd' : ''">{{ props.date }}</span>
         </div>
         <div class="buttons">
@@ -23,7 +23,7 @@
 interface EntryProps {
     name: string;
     desc?: string;
-    date: string;
+    date: Date;
     value: string;
     payd?: boolean;
     remove?: () => void;
