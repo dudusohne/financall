@@ -59,11 +59,15 @@ async function handleRemoveItem(item: Bill) {
 }
 
 async function handleCheckItem(item: Bill) {
-    const billRef = doc(dbFire, `users/${auth.value?.uid}/bills/`, `${item.id}`);
+    try {
+        const billRef = doc(dbFire, `users/${auth.value?.uid}/bills/`, `${item.id}`);
 
-    await updateDoc(billRef, {
-        payd: true
-    });
+        await updateDoc(billRef, {
+            payd: true
+        });
+    } catch (e) {
+        console.log(e.message);
+    }
 }
 </script>
 
