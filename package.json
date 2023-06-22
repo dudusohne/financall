@@ -10,7 +10,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/style-resources": "^1.2.1",
     "node-sass": "^7.0.3",
-    "nuxt": "3.0.0-rc.8",
+    "nuxt": "3.4.3",
     "sass-loader": "^13.0.2"
   },
   "dependencies": {
